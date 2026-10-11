@@ -29,6 +29,11 @@ describe("coupons", () => {
     expect(discountFor(1400, findCoupon("SAVE10"))).toBe(100);
   });
 
+  it("matches coupon codes regardless of case", () => {
+  expect(findCoupon("save10")).toEqual(findCoupon("SAVE10"));
+  expect(findCoupon(" flat50 ")).toEqual(findCoupon("FLAT50"));
+  });
+
   it("unknown coupons do nothing", () => {
     expect(findCoupon("FREEFOOD")).toBeUndefined();
   });
